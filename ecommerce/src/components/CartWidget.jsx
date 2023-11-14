@@ -1,4 +1,5 @@
 import Cart from '../assets/46297.png'
+import React from "react"
 
 export const CartWidget=()=>{
 

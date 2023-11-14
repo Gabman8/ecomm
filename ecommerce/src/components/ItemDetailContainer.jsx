@@ -3,11 +3,12 @@
 import React,{useEffect,useState} from "react"
 import { products } from "../data/products"
 import { ItemList } from "./ItemList"
+import { ItemDetail } from "./ItemDetail"
 
 
-export const ItemListContainer= (props)=>{
+export const ItemDetailContainer= ()=>{
 
-    const[items,setItems]= useState([]);
+    const[item,setItem]= useState(null);
     const {id}= useParams();
     useEffect(()=>{
         const mypromise=new Promise((resolve,reject)=>{
@@ -16,22 +17,14 @@ export const ItemListContainer= (props)=>{
             }, 2000);
         });
         mypromise.then((response)=>{
-            if(!id){
-                setItems(response);
-            }else{
-                const filterByCategory= response.filter(
-                    item=> item.category===id
-                );
-                setItems(filterByCategory);
-            }
+            const findById= response.find((item)=> item.id===Number(id));
+            setItem(findById);
         });
 
     },[id]);
     return(
         <Container className="mt-5">
-
-            <div>{props.greeting}</div>
-            <ItemList items={items}/>
+          {item ? <ItemDetail item={item} />: <div>Loading...</div> } 
         </Container>
     )
 }
