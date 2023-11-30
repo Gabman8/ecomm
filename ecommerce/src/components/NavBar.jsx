@@ -12,14 +12,14 @@ return(
       <Container fluid>
         <Navbar.Brand href="/">Ecommerce</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
-          <Nav
+        <Nav
             className="me-auto my-2 my-lg-0"
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <NavLink to="category/coches">Coches</NavLink>
-            <NavLink to="category/relojes">Relojes</NavLink>
-            <NavLink to="category/portatiles" >Ordenadores</NavLink>
+              <NavLink to="category/coches">Coches</NavLink>
+              <NavLink to="category/relojes">Relojes</NavLink>
+              <NavLink to="category/portatiles" >Ordenadores</NavLink>
           </Nav>
           <CartWidget />
       </Container>
