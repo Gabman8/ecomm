@@ -13,7 +13,7 @@ export const CartWidget=()=>{
     return(
     <Link to="/cart">
         <img src={Cart} alt="Imagen" width="40" height="40"></img>
-        <span>{total}</span>
+        <span style={{color:'#4f4c4c', padding:'5px', 'font-family': 'Lato'}}>{total}</span>
     </Link>
     );
 };

@@ -3,6 +3,7 @@ import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
 import Table from 'react-bootstrap/Table';
 import { useNavigate } from "react-router";
+import Button from 'react-bootstrap/Button';
 
 export const Cart=()=>{
 
@@ -14,7 +15,7 @@ export const Cart=()=>{
 
         <Container className="mt-5">
             <>Carrito vacío</>
-            <button onClick={()=> navigate("/")}>Ir a home</button>
+            <Button variant="primary" onClick={()=> navigate("/")}>Ir a home</Button>
         </Container>
         )
        
@@ -43,8 +44,8 @@ export const Cart=()=>{
             ))}
             </tbody>
             </Table>              
-            <button onClick={clear}>Vaciar carrito</button>
-            <button onClick={()=> navigate("/checkout")}>Checkout</button>
+            <Button variant="primary" onClick={clear}>Vaciar carrito</Button>
+            <Button variant="primary" onClick={()=> navigate("/checkout")}>Checkout</Button>
             </Container>
     );
 }

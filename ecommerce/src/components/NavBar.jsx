@@ -14,12 +14,12 @@ return(
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Nav
             className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
+            style={{ maxHeight: '100px', margin: '5px'}}
             navbarScroll
           >
-              <NavLink to="category/coches">Coches</NavLink>
-              <NavLink to="category/relojes">Relojes</NavLink>
-              <NavLink to="category/portatiles" >Ordenadores</NavLink>
+              <NavLink to="category/coches"  style={{color:'#4f4c4c', padding:'5px', 'font-family': 'Lato'}}>Coches</NavLink>
+              <NavLink to="category/relojes" style={{color:'#4f4c4c', padding:'5px','font-family': 'Lato'}}>Relojes</NavLink>
+              <NavLink to="category/portatiles" style={{color:'#4f4c4c', padding:'5px','font-family': 'Lato'}} >Ordenadores</NavLink>
           </Nav>
           <CartWidget />
       </Container>

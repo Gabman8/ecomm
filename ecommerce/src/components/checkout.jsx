@@ -5,6 +5,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { useNavigate } from "react-router";
 import {
     getFirestore,
     collection,
@@ -23,9 +24,10 @@ const initialValue={
 }
 
 function Checkout() {
-const {clear,items}= useContext(CartContext);
-const [buyer, setBuyer] = useState(initialValue);
-const handleChange=(event)=>{
+  const navigate = useNavigate();
+  const {clear,items}= useContext(CartContext);
+  const [buyer, setBuyer] = useState(initialValue);
+  const handleChange=(event)=>{
 
     setBuyer(buyer =>{
 
@@ -37,6 +39,10 @@ const handleChange=(event)=>{
 };
 
 const sendOrder=()=>{
+  
+  if(buyer.email!=="" && buyer.contraseña!=="" && buyer.direccion!=="" 
+  && buyer.ciudad!=="" &&  buyer.codigo!==""){
+
     const order = {
         buyer:buyer,
         items:items,
@@ -50,35 +56,42 @@ const sendOrder=()=>{
         if(id){
             setBuyer(initialValue);
             clear();
+            navigate("/");
+            
         }
     })
+  }else{
+
+    alert("Hay campos obligatorios sin completar")
+  }
+    
 }
 return (
-    <Form>
+    <Form style={{margin:'50px'}}>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridEmail">
-          <Form.Label>Email</Form.Label>
-          <Form.Control value={buyer.email} name='email' onChange={handleChange} type="email" placeholder="Enter email" />
+          <Form.Label>Email*</Form.Label>
+          <Form.Control value={buyer.email} name='email' onChange={handleChange} type="email" placeholder="Introduce tu direccion de correo"  required/>
         </Form.Group>
         <Form.Group as={Col} controlId="formGridPassword">
-          <Form.Label>Contraseña</Form.Label>
-          <Form.Control  value={buyer.contraseña} name='contraseña' onChange={handleChange} type="password" placeholder="introduce contraseña" />
+          <Form.Label>Contraseña*</Form.Label>
+          <Form.Control  value={buyer.contraseña} name='contraseña' onChange={handleChange} type="password" placeholder="Introduce contraseña"  required/>
         </Form.Group>
       </Row>
       <Row className="mb-3">
       <Form.Group className="mb-3" controlId="formGridAddress1">
-        <Form.Label>Direccion</Form.Label>
-        <Form.Control value={buyer.direccion} name='direccion' onChange={handleChange}  placeholder="calle de la constitucion" />
+        <Form.Label>Direccion*</Form.Label>
+        <Form.Control value={buyer.direccion} name='direccion' onChange={handleChange}  placeholder="Introduce tu calle"  required/>
       </Form.Group>
         <Form.Group as={Col} controlId="formGridCity">
-          <Form.Label>Ciudad</Form.Label>
-          <Form.Control value={buyer.ciudad}  name='ciudad' onChange={handleChange}/>
+          <Form.Label>Ciudad*</Form.Label>
+          <Form.Control value={buyer.ciudad}  name='ciudad'  placeholder="Introduce tu ciudad" onChange={handleChange}  required/>
         </Form.Group>
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} controlId="formGridZip">
-          <Form.Label>Codigo postal</Form.Label>
-          <Form.Control  value={buyer.codigo}   name='codigo' onChange={handleChange}/>
+          <Form.Label>Codigo postal*</Form.Label>
+          <Form.Control  value={buyer.codigo}   name='codigo' placeholder=" Introduce codigo postal" onChange={handleChange}  required/>
         </Form.Group>
       </Row>
       <Button variant="primary" onClick={sendOrder}>

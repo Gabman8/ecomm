@@ -8,11 +8,8 @@ import {
     collection,
     getDocs,
     query,
-    where,
-    doc} from "firebase/firestore";
+    where} from "firebase/firestore";
 export const ItemListContainer= (props)=>{
-
-    const value=useState();
 
     const[items,setItems]= useState([]);
     const {id}= useParams();
@@ -35,8 +32,7 @@ export const ItemListContainer= (props)=>{
     },[id])
     return(
         <Container className="mt-5">
-
-            <div>{props.greeting}</div>
+            <div style={{'font-size': '40px', margin:'20px'}}>{props.greeting}</div>
             <ItemList items={items}/>
         </Container>
     )

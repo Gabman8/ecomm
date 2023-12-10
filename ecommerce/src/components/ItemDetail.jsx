@@ -10,13 +10,13 @@ export const ItemDetail = ({ item }) => {
         onAdd(item,quantity);
     };
   return (
-    <>
+    <div>
       <h1>{item.title}</h1>
-      <img width="1000" height="500" src={item.pictureUrl}></img>
-      <p>{item.description}</p>
+      <img src={item.pictureUrl} width="500px"></img>
+      <p style={{textAlign:'justify', overflow: 'hidden'}}>{item.description}</p>
       <p>{item.price}€</p>
       <p2> Stock: {item.stock}</p2>
       <ItemCounter onAdd={add} stock={item.stock} initial={1}/>
-    </>
+    </div>
   );
 };
